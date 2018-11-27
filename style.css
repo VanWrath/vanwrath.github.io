@@ -51,7 +51,7 @@ hr {
 p {
     font-family: 'Source Serif Pro', serif;
     font-size: 1.20rem;
-    margin: 1.5em 0%;
+    /* margin: 1.5em 0%; */
 }
 
 .jumbotron {
@@ -67,3 +67,4 @@ h1.display-4 {
     font-family: 'Source Serif Pro', serif;
     font-size: 14px;
 }
+

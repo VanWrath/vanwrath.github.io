@@ -1,29 +1,35 @@
-<div class="container">
+<div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">Messenger</h1>
         </div>
     </div>
-    <img src="images/Messenger-Screenshot.png" class="img-fluid" alt="messenger_screenshot">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 col-md-12">
+            <img src="images/Messenger-Screenshot.png" class="img-fluid" alt="messenger_screenshot">
     
-    <hr/>
-    <h1><b>Introduction</b></h1>
-    <p>
-        My software design class was tasked to design and implement the backend of a messaging system in the Eiffel programming language. The Project can be completed individually or 
-        in pairs. The software specifications were that users can be subscribed to message groups and can send a message to the group. It is essential for privacy concerns that only 
-        those users registered in a group may read messages directed at the group.
-    </p>
-    <hr/>
-    <h1><b>Process</b></h1>
-    <img src="images/MESSENGER-BON.png" class="img-fluid" alt="BON diagram">
-    <p>
-        We started out researching a design pattern to use for this project. Out of all the design patterns we considered, we thought the mediator pattern would work the best. The mediator
-        pattern would manage interactions between user, group and message objects, allowing for many-to-many relationships between interacting objects.
-        <br/> <br/>
-        After we implemented the project, we had to do extensive acceptance testing and comparing it to an oracle program that was given to us and also fixing any bugs we found along the way. 
-        The oracle program is an executable file that gave us the exact required output for our acceptance tests, so our program's output had to exactly match the oracle's output character by 
-        character. I also wrote unix shell scripts to make test faster and easier since the program can only be executed in the terminal.
-        <br/><br/>
-        The code implementation can be found on my <a href="https://github.com/VanWrath/Messenger">github</a>.
-    </p>
+            <hr>
+            <h1><b>Introduction</b></h1>
+            <p>
+                My software design class was tasked to design and implement the backend of a messaging system in the Eiffel programming language. The Project can be completed individually or 
+                in pairs. The software specifications were that users can be subscribed to message groups and can send a message to the group. It is essential for privacy concerns that only 
+                those users registered in a group may read messages directed at the group.
+            </p>
+            <hr>
+            <h1><b>Process</b></h1>
+            <img src="images/MESSENGER-BON.png" class="img-fluid" alt="BON diagram">
+            <p>
+                We started out researching a design pattern to use for this project. Out of all the design patterns we considered, we thought the mediator pattern would work the best. The mediator
+                pattern would manage interactions between user, group and message objects, allowing for many-to-many relationships between interacting objects.
+                <br> <br>
+                After we implemented the project, we had to do extensive acceptance testing and comparing it to an oracle program that was given to us and also fixing any bugs we found along the way. 
+                The oracle program is an executable file that gave us the exact required output for our acceptance tests, so our program's output had to exactly match the oracle's output character by 
+                character. I also wrote unix shell scripts to make test faster and easier since the program can only be executed in the terminal.
+                <br><br>
+                The code implementation can be found on my <a href="https://github.com/VanWrath/Messenger">github</a>.
+            </p>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
 </div>
