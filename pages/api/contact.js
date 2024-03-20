@@ -55,8 +55,8 @@ export default async function ContactAPI(req, res) {
               <img src="https://manuarora.in/logo.png" class="logo-image" style="height: 50px;width: 50px;border-radius: 5px;overflow: hidden;">
               <p class="footer" style="font-size: 16px;padding-bottom: 20px;border-bottom: 1px solid #D1D5DB;">Regards<br>Kyle Vannarath<br>Software Developer<br>+1 647-648-0815</p>
               <div class="footer-links" style="display: flex;justify-content: center;align-items: center;">
-                <a href="https://kylevannarath.ca/" style="text-decoration: none;margin: 8px;color: #9CA3AF;">Website</a>
-                <a href="https://github.com/VanWrath/" style="text-decoration: none;margin: 8px;color: #9CA3AF;">GitHub</a>
+                <a href="https://www.kylevannarath.ca/" style="text-decoration: none;margin: 8px;color: #9CA3AF;">Website</a>
+                <a href="https://github.com/VanWrath" style="text-decoration: none;margin: 8px;color: #9CA3AF;">GitHub</a>
                 <a href="https://www.linkedin.com/in/kyle-vannarath-66654b130/" style="text-decoration: none;margin: 8px;color: #9CA3AF;">LinkedIn</a>
               </div>
               </div>
