@@ -5,7 +5,7 @@ import NavbarMain from './Components/Navbar/NavbarMain';
 import HeroSection from './Components/HeroSection';
 import ProjectCardWeb from './Components/ProjectCards/ProjectCardWeb';
 import ProjectCardMobile from './Components/ProjectCards/ProjectCardMobile';
-import ContactForm from './Components/ContactForm';
+import ContactSection from './Components/ContactSection/ContactSection';
 import Footer from './Components/Footer';
 import { useScroll, useTransform, motion } from 'framer-motion';
 
@@ -14,6 +14,7 @@ import HobbyShopImage from './images/hobby-shop-screenshot.png';
 import FundraiserImage from './images/Fundraiser-website-screenshot.png';
 import DrinkingGameImage from './images/Mobile Game images/home-ss.png';
 import ProjectCardImage from './Components/ProjectCards/ProjectCardImage';
+import InventoryAppImage from './images/Inventory-app-ss.jpg';
 
 export default function Home() {
 	return (
@@ -53,8 +54,8 @@ export default function Home() {
 							body="Elevate any social gathering with this engaging and portable game crafted using React Native. Designed for versatility, it promises endless fun and entertainment on the go."
 						/>
 
-						<ProjectCardImage
-							src="/"
+						<ProjectCardMobile
+							src={InventoryAppImage.src}
 							alt="project screenshot"
 							title="Inventory App"
 							showButton={false}
@@ -64,7 +65,7 @@ export default function Home() {
 				</div>
 
 				<div id="contact" className="">
-					<ContactForm />
+					<ContactSection />
 				</div>
 			</div>
 			<Footer />
