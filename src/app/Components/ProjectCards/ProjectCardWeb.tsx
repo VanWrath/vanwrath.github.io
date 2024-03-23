@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 //props src, alt, title, body, url, showButton
@@ -11,7 +12,7 @@ function ProjectCardWeb(props: any) {
 						<div className="input">{props.url}</div>
 					</div>
 					<figure className="min-w-60">
-						<img src={props.src} alt={props.alt} />
+						<Image src={props.src} alt={props.alt} />
 					</figure>
 				</div>
 			</div>

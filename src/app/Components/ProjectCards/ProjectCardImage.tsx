@@ -1,11 +1,12 @@
 import React from 'react';
+import Image from 'next/image';
 
 //props src, alt, title, body, url, showButton
 function ProjectCardImage(props: any) {
 	return (
 		<div className="card bg-base-100 shadow-xl m-6">
 			<figure className="min-w-60">
-				<img src={props.src} alt={props.alt} />
+				<Image src={props.src} alt={props.alt} />
 			</figure>
 
 			<div className="card-body">

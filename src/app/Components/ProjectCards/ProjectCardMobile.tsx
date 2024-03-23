@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 //props src, alt, title, body, url, showButton
 function ProjectCardMobile(props: any) {
@@ -8,7 +9,7 @@ function ProjectCardMobile(props: any) {
 				<div className="camera" />
 				<div className="display">
 					<figure className="max-w-80">
-						<img src={props.src} alt={props.alt} />
+						<Image src={props.src} alt={props.alt} />
 					</figure>
 				</div>
 			</div>

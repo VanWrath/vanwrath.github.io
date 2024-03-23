@@ -1,11 +1,13 @@
 import React from 'react';
+import Image from 'next/image';
+
 import image from '../images/kyle_photo.jpg';
 
 function HeroSection() {
 	return (
 		<div className="hero min-h-screen bg-base-200">
 			<div className="hero-content flex-col lg:flex-row">
-				<img src={image.src} alt="Portrait" className="max-w-sm rounded-lg shadow-2xl min-w-60 max-h-96" />
+				<Image src={image.src} alt="Portrait" className="max-w-sm rounded-lg shadow-2xl min-w-60 max-h-96" />
 				<div className="m-6">
 					<h1 className="text-5xl font-bold">About</h1>
 					<p className="py-6">
