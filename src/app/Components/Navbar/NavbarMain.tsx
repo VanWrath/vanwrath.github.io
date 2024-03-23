@@ -1,9 +1,12 @@
 import React from 'react';
 import ThemeToggle from './ThemeToggle';
+import Image from 'next/image';
+
+import Icon from '../../images/Icons/favicon-32x32.png';
 
 function NavbarMain() {
 	return (
-		<div className="navbar bg-base-100 sticky top-0 z-10">
+		<div className="navbar bg-base-100 sticky top-0 z-50">
 			<div className="navbar-start">
 				<div className="dropdown">
 					<div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -38,6 +41,7 @@ function NavbarMain() {
 					</ul>
 				</div>
 				<a className="btn btn-ghost text-xl">
+					<Image src={Icon} alt="Site icon" />
 					<span>Kyle Vannarath</span>
 				</a>
 			</div>

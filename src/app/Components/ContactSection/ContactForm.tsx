@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { sendGTMEvent } from '@next/third-parties/google';
 
 function ContactForm() {
 	const [ name, setName ] = useState('');
@@ -17,7 +18,7 @@ function ContactForm() {
 	// Setting success or failure messages states
 	const [ showSuccessMessage, setShowSuccessMessage ] = useState(false);
 	const [ showFailureMessage, setShowFailureMessage ] = useState(false);
-	const [sending, setSending] = useState(false);
+	const [ sending, setSending ] = useState(false);
 
 	const handleValidation = () => {
 		let tempErrors: any = {};
@@ -50,6 +51,7 @@ function ContactForm() {
 	//nodemailer submit
 	const handleSubmit = async (event: any) => {
 		event.preventDefault();
+		sendGTMEvent({ event: 'buttonClicked', value: 'submit' });
 
 		let isValidForm = handleValidation();
 		if (isValidForm) {
@@ -81,7 +83,6 @@ function ContactForm() {
 				setShowSuccessMessage(true);
 				setShowFailureMessage(false);
 				setButtonText('Send');
-				
 			}
 			if (!response.ok) {
 				console.log('Error sending messsage');
@@ -148,7 +149,9 @@ function ContactForm() {
 					className="input input-bordered"
 					required
 				/>
-				{errors?.name && (<p className='text-red-500'>Name cannot be empty.</p>)}
+				{
+					//errors?.name && (<p className='text-red-500'>Name cannot be empty.</p>)
+				}
 			</div>
 
 			<div className="form-control">
@@ -166,9 +169,9 @@ function ContactForm() {
 					className="input input-bordered"
 					required
 				/>
-				{ errors?.email && (
+				{/*errors?.email && (
             <p className="text-red-500">Email cannot be empty.</p>
-				)}
+				)*/}
 			</div>
 
 			<div className="form-control">
@@ -186,9 +189,9 @@ function ContactForm() {
 					className="input input-bordered"
 					required
 				/>
-				{errors?.subject && (
+				{/*errors?.subject && (
             <p className="text-red-500">Subject cannot be empty.</p>
-				) }
+				) */}
 			</div>
 
 			<div className="form-control">
@@ -205,9 +208,9 @@ function ContactForm() {
 					placeholder="Message"
 					required
 				/>
-				{ errors?.message && (
+				{/* errors?.message && (
             <p className="text-red-500">Message body cannot be empty.</p>
-				) }
+				) */}
 			</div>
 
 			<div className="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY" />
