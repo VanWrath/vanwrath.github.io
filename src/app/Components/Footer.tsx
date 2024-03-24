@@ -3,10 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library, IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
-library.add(faGithub, faLinkedin);
-
-const githubIcon: IconProp = 'fa-brands fa-github';
-const linkedInIcon: IconProp = 'fa-brands fa-linkedin';
+//library.add(faGithub, faLinkedin);
 
 function Footer() {
 	return (
@@ -35,7 +32,7 @@ function Footer() {
 							viewBox="0 0 24 24"
 							className="fill-current"
 						>
-							<FontAwesomeIcon icon={githubIcon} />
+							<FontAwesomeIcon icon={faGithub} />
 						</svg>
 					</a>
 
@@ -47,7 +44,7 @@ function Footer() {
 							viewBox="0 0 24 24"
 							className="fill-current"
 						>
-							<FontAwesomeIcon icon={linkedInIcon} />
+							<FontAwesomeIcon icon={faLinkedin} />
 						</svg>
 					</a>
 				</div>
