@@ -34,7 +34,7 @@ export default function Home() {
 							title="Fundraiser Website"
 							showButton={true}
 							body="Leveraging the power and flexibility of React, I crafted a simple, yet intuitive and dynamic platform aimed at empowering users to raise funds for their causes effortlessly. With a sleek and modern user interface, the website offers seamless navigation and interaction, ensuring a delightful user experience. From creating personalized fundraising campaigns to securely processing donations, every aspect of the website is meticulously designed and implemented with the user's needs in mind. Through this project, I honed my skills in React development, UI/UX design, and project management, underscoring my commitment to building impactful digital solutions."
-							url="https://www.kylevannarath.ca/flexible-fundraising-single-web-page/"
+							url="https://vanwrath.github.io/flexible-fundraising-single-web-page/"
 						/>
 
 						<ProjectCardWeb
@@ -43,7 +43,7 @@ export default function Home() {
 							title="Hobby Shop"
 							showButton={true}
 							body="This dynamic full-stack web application showcasing an array of products sourced from a database. Crafted with React, Bootstrap, Node.js, and MongoDB, this platform ensures a seamless and responsive user experience, promising both versatility and functionality."
-							url="https://www.kylevannarath.ca/shop-web/"
+							url="https://vanwrath.github.io/shop-web/"
 						/>
 
 						<ProjectCardMobile
