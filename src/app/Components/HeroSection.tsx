@@ -7,7 +7,16 @@ function HeroSection() {
 	return (
 		<div className="hero min-h-screen bg-base-200">
 			<div className="hero-content flex-col lg:flex-row">
-				<Image src={image.src} alt="Portrait" className="max-w-sm rounded-lg shadow-2xl min-w-60 max-h-96" />
+				<div className="w-full max-w-sm px-4 lg:px-0">
+					<Image 
+						src={image.src} 
+						alt="Portrait" 
+						width={384}
+						height={512}
+						className="rounded-lg shadow-2xl w-full h-auto object-cover aspect-[3/4]" 
+						priority
+					/>
+				</div>
 				<div className="m-6">
 					<h1 className="text-5xl font-bold">About</h1>
 					<p className="py-6">

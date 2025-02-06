@@ -1,12 +1,31 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import ThemeToggle from './ThemeToggle';
 import Image from 'next/image';
+
 
 import Icon from '../../images/Icons/favicon-32x32.png';
 
 function NavbarMain() {
+	const [prevScrollPos, setPrevScrollPos] = useState(0);
+	const [visible, setVisible] = useState(true);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const currentScrollPos = window.scrollY;
+			setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+			setPrevScrollPos(currentScrollPos);
+		};
+
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, [prevScrollPos]);
+
 	return (
-		<div className="navbar bg-base-100 sticky top-0 z-50">
+		<div className={`navbar bg-base-100 sticky top-0 z-50 transition-transform duration-300 ${
+			visible ? 'translate-y-0' : '-translate-y-full'
+		}`}>
 			<div className="navbar-start">
 				<div className="dropdown">
 					<div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
