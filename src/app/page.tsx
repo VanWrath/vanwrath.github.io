@@ -20,7 +20,7 @@ import InventoryAppImage from './images/Inventory-app-ss.jpg';
 export default function Home() {
 	return (
 		<>
-			<GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+			<GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID ?? ''} />
 			<main className="bg-base-200">
 				<NavbarMain />
 				<div className="container mx-auto">
