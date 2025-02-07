@@ -36,8 +36,8 @@ export default async function ContactAPI(req, res) {
       <head>
         <meta charset="utf-8">
       
-        <title>The HTML5 Herald</title>
-        <meta name="description" content="The HTML5 Herald">
+        <title>Kyle Vannarath Contact Form</title>
+        <meta name="description" content="Contact form">
         <meta name="author" content="SitePoint">
       <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
       
@@ -55,7 +55,7 @@ export default async function ContactAPI(req, res) {
               <p>${req.body.message}</p>
               <br>
               </div>
-              <img src="https://manuarora.in/logo.png" class="logo-image" style="height: 50px;width: 50px;border-radius: 5px;overflow: hidden;">
+              <img src="https://www.kylevannarath.ca/favicon.ico" class="logo-image" style="height: 50px;width: 50px;border-radius: 5px;overflow: hidden;">
               <p class="footer" style="font-size: 16px;padding-bottom: 20px;border-bottom: 1px solid #D1D5DB;">Regards<br>Kyle Vannarath<br>Software Developer<br>+1 647-648-0815</p>
               <div class="footer-links" style="display: flex;justify-content: center;align-items: center;">
                 <a href="https://www.kylevannarath.ca/" style="text-decoration: none;margin: 8px;color: #9CA3AF;">Website</a>
