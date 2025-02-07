@@ -3,6 +3,13 @@
 import React, { useState } from 'react';
 import { sendGTMEvent } from '@next/third-parties/google';
 
+interface FormErrors {
+	name?: boolean;
+	email?: boolean;
+	subject?: boolean;
+	message?: boolean;
+}
+
 function ContactForm() {
 	const [ name, setName ] = useState('');
 	const [ email, setEmail ] = useState('');
@@ -10,7 +17,7 @@ function ContactForm() {
 	const [ message, setMessage ] = useState('');
 
 	//   Form validation state
-	const [ errors, setErrors ] = useState({});
+	const [ errors, setErrors ] = useState<FormErrors>({});
 
 	//   Setting button text on form submission
 	const [ buttonText, setButtonText ] = useState('Send');
@@ -21,34 +28,50 @@ function ContactForm() {
 	const [ sending, setSending ] = useState(false);
 
 	const handleValidation = () => {
-		let tempErrors: any = {};
-		let isValid: boolean = true;
+		let tempErrors: FormErrors = {};
+		let isValid = true;
 
+		// Email validation
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if (!email.length || !emailRegex.test(email)) {
+			tempErrors['email'] = true;
+			isValid = false;
+		}
+
+		// Name validation
 		if (name.length <= 0) {
 			tempErrors['name'] = true;
 			isValid = false;
 		}
-		if (email.length <= 0) {
-			tempErrors['email'] = true;
-			isValid = false;
-		}
+
+		// Subject validation
 		if (subject.length <= 0) {
 			tempErrors['subject'] = true;
 			isValid = false;
 		}
-		if (message.length <= 0) {
+
+		// Message validation
+		if (message.length < 10) {
 			tempErrors['message'] = true;
 			isValid = false;
 		}
 
 		setErrors({ ...tempErrors });
-		console.log('errors', errors);
 		return isValid;
+	};
+
+	const resetForm = () => {
+		setName('');
+		setEmail('');
+		setSubject('');
+		setMessage('');
+		setErrors({});
 	};
 
 	// Handling form submit
 
 	//nodemailer submit
+	/*
 	const handleSubmit = async (event: any) => {
 		event.preventDefault();
 		sendGTMEvent({ event: 'buttonClicked', value: 'submit' });
@@ -93,44 +116,56 @@ function ContactForm() {
 			}
 		}
 		console.log(name, email, subject, message);
-	};
+	};*/
 
 	//SendGrid submit
-	/*
-	const handleSubmit = async (event: any) => {
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-
+		
 		let isValidForm = handleValidation();
 		if (isValidForm) {
 			setButtonText('Sending');
-			const res = await fetch('/api/sendgrid', {
-				body: JSON.stringify({
-					email: email,
-					name: name,
-					subject: subject,
-					message: message
-				}),
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				method: 'POST'
-			});
+			setSending(true);
+			
+			try {
+				const res = await fetch('/api/sendgrid', {
+					body: JSON.stringify({
+						email: email,
+						name: name,
+						subject: subject,
+						message: message
+					}),
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					method: 'POST'
+				});
 
-			const { error } = await res.json();
-			if (error) {
-				console.log(error);
+				const responseText = await res.text();
+				let data;
+				try {
+					data = JSON.parse(responseText);
+				} catch (e) {
+					throw new Error("Invalid server response");
+				}
+
+				if (data.error) {
+					throw new Error(data.error);
+				}
+
+				setShowSuccessMessage(true);
+				setShowFailureMessage(false);
+				setButtonText('Send');
+				setSending(false);
+				resetForm();
+			} catch (error) {
 				setShowSuccessMessage(false);
 				setShowFailureMessage(true);
 				setButtonText('Send');
-				return;
+				setSending(false);
 			}
-
-			setShowSuccessMessage(true);
-			setShowFailureMessage(false);
-			setButtonText('Send');
 		}
-		console.log(name, email, subject, message);
-	};*/
+	};
 
 	return (
 		<form className="card-body" onSubmit={handleSubmit}>
@@ -150,7 +185,7 @@ function ContactForm() {
 					required
 				/>
 				{
-					//errors?.name && (<p className='text-red-500'>Name cannot be empty.</p>)
+					errors?.name && (<p className='text-red-500'>Name cannot be empty.</p>)
 				}
 			</div>
 
@@ -166,12 +201,14 @@ function ContactForm() {
 					onChange={(e) => {
 						setEmail(e.target.value);
 					}}
-					className="input input-bordered"
+					className={`input input-bordered ${errors.email ? 'input-error' : ''}`}
 					required
 				/>
-				{/*errors?.email && (
-            <p className="text-red-500">Email cannot be empty.</p>
-				)*/}
+				{errors?.email && (
+					<p className="text-red-500 text-sm mt-1">
+						Please enter a valid email address.
+					</p>
+				)}
 			</div>
 
 			<div className="form-control">
@@ -189,35 +226,42 @@ function ContactForm() {
 					className="input input-bordered"
 					required
 				/>
-				{/*errors?.subject && (
+				{errors?.subject && (
             <p className="text-red-500">Subject cannot be empty.</p>
-				) */}
+				) }
 			</div>
 
 			<div className="form-control">
 				<label className="label" htmlFor="message">
 					<span className="label-text">Message</span>
+					<span className="label-text-alt">{message.length}/10 characters minimum</span>
 				</label>
 				<textarea
-					className="textarea textarea-bordered"
+					className={`textarea textarea-bordered ${errors.message ? 'textarea-error' : ''}`}
 					name="message"
 					value={message}
 					onChange={(e) => {
 						setMessage(e.target.value);
 					}}
-					placeholder="Message"
+					placeholder="Message (minimum 10 characters)"
 					required
 				/>
-				{/* errors?.message && (
-            <p className="text-red-500">Message body cannot be empty.</p>
-				) */}
+				{errors?.message && (
+					<p className="text-red-500 text-sm mt-1">
+						Message must be at least 10 characters long.
+					</p>
+				)}
 			</div>
 
 			<div className="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY" />
 			<br />
 
 			<div className="form-control mt-6">
-				<button type="submit" className="btn btn-primary" disabled={sending}>
+				<button 
+					type="submit" 
+					className={`btn btn-primary ${sending ? 'loading' : ''}`} 
+					disabled={sending}
+				>
 					{buttonText}
 				</button>
 			</div>

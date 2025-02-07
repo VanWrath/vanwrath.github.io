@@ -1,33 +1,36 @@
 import nodemailer from "nodemailer";
 
 export default async function ContactAPI(req, res) {
-    const {name, email, subject, message} = req.body;
+  const { name, email, subject, message } = req.body;
 
-    const user = process.env.user;
+  const user = process.env.user;
 
-    //console.log("User: ", user);
-    //console.log('Pass: ', process.env.pass);
+  //console.log("User: ", user);
+  //console.log('Pass: ', process.env.pass);
 
-    const data = {
-        name, email, subject, message
-    }
+  const data = {
+    name,
+    email,
+    subject,
+    message,
+  };
 
-    const transporter = nodemailer.createTransport({
-        host: "smtp-mail.outlook.com",
-        port: 587,
-        auth: {
-            user: user,
-            pass: process.env.pass
-        },
-        tls: {rejectUnauthorized: false}
-    })
+  const transporter = nodemailer.createTransport({
+    host: "smtp-mail.outlook.com",
+    port: 587,
+    auth: {
+      user: user,
+      pass: process.env.pass,
+    },
+    tls: { rejectUnauthorized: false },
+  });
 
-    try {
-        const mail = await transporter.sendMail({
-            from: user,
-            to: "kyle_vannarath@hotmail.ca",
-            replyTo: email,
-            subject: `[Lead from website] : ${req.body.subject}`,
+  try {
+    const mail = await transporter.sendMail({
+      from: user,
+      to: user,
+      replyTo: email,
+      subject: `[Lead from website] : ${req.body.subject}`,
       html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       <html lang="en">
       <head>
@@ -62,13 +65,14 @@ export default async function ContactAPI(req, res) {
               </div>
       </body>
       </html>`,
-        });
+    });
 
-        console.log("Message sent: ", mail.messageId);
-        return res.status(200).json({message: "success"})
-    }catch (error){
-        console.log(error);
-        res.status(500).json({message: "Could not send email. Your message was not sent."})
-    }
-        
+    console.log("Message sent: ", mail.messageId);
+    return res.status(200).json({ message: "success" });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ message: "Could not send email. Your message was not sent." });
+  }
 }
